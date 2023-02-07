@@ -1,52 +1,26 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navbar } from "./Navbar";
+import { Counter } from "./Components/Counter";
+import { Screensize } from "./Components/Screensize";
+import { CatGenerator } from "./Components/CatGenerator";
+import { Generator } from "./Components/Generators";
 
 function App() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const [count, setCount] = useState(0);
-
-  const plusCount = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  const minusCount = () => {
-    setCount((prevCount) => prevCount - 1);
-  };
-
-  const resetCount = () => {
-    setCount((prevCount) => prevCount - prevCount);
-  };
-
   return (
     <div className="App">
-      <div className="card">
-        <h1 className="title">SIMPLE useEffect function</h1>
-        <div className="card-content">
-          <span>Size of the screen is {windowWidth} px</span>
+      <Router>
+        <div>
+          <Navbar />
         </div>
-      </div>
-      <div className="card">
-        <h1 className="title">SIMPLE COUNTER MADE with useState</h1>
-        <div className="card-content">
-          <button onClick={minusCount}>-</button>
-          <span>{count}</span>
-          <button onClick={plusCount}>+</button>
-          <button onClick={resetCount}>reset</button>
+        <div className="Main">
+          <Routes>
+            <Route path="/" element={<Screensize />} />
+            <Route path="/counter" element={<Counter />} />
+            <Route path="/generators" element={<Generator />} />
+          </Routes>
         </div>
-      </div>
+      </Router>
     </div>
   );
 }
