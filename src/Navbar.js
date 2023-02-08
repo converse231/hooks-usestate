@@ -8,7 +8,8 @@ export const Navbar = () => {
       </a>
       <ul>
         <li>
-          <Link to="/">Screensize </Link>
+          <Link to="/">To do List</Link>
+          <Link to="/screensize">Screensize </Link>
           <Link to="/counter">Counter</Link>
           <Link to="/generators">Random Generator</Link>
         </li>
